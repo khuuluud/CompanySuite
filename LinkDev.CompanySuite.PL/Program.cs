@@ -1,4 +1,5 @@
 using LinkDev.CompanySuite.DAL.Persistance.Data;
+using LinkDev.CompanySuite.DAL.Persistance.Repositories.Depatments;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -23,7 +24,8 @@ namespace LinkDev.CompanySuite.PL
 
 
             });
-              
+
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 
             #endregion

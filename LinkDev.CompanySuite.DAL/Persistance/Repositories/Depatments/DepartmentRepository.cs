@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanySuite.DAL.Persistance.Repositories.Depatments
 {
-    internal class DepartmentRepository : IDepartmentRepository
+    public class DepartmentRepository : IDepartmentRepository
     {
         private readonly ApplicationDbContext _DbContext;
 
@@ -20,13 +20,17 @@ namespace LinkDev.CompanySuite.DAL.Persistance.Repositories.Depatments
         }
 
 
-        public IEnumerable<Department> GetAll(bool withAsNoTracking = false)
+        public IEnumerable<Department> GetAll(bool withAsNoTracking = true)
         {
             if (withAsNoTracking)
                 return _DbContext.Departments.AsNoTracking().ToList();
             return _DbContext.Departments.ToList();
         }
-
+        
+        public IQueryable<Department> GetAllAsIQueryable()
+        {
+            return _DbContext.Departments;
+        }
         public int Add(Department entity)
         {
             _DbContext.Departments.Add(entity);
@@ -42,12 +46,14 @@ namespace LinkDev.CompanySuite.DAL.Persistance.Repositories.Depatments
         {
             _DbContext.Departments.Update(entity);
             return _DbContext.SaveChanges();
-        }   
-        
+        }
+
         public int Delete(Department entity)
         {
             _DbContext.Departments.Remove(entity);
             return _DbContext.SaveChanges();
         }
+
+       
     }
 }
