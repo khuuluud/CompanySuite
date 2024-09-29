@@ -28,7 +28,7 @@ namespace LinkDev.CompanySuite.PL
 
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
-            builder.Services.AddScoped<IDepartmentService, IDepartmentService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
             #endregion
 
@@ -54,6 +54,7 @@ namespace LinkDev.CompanySuite.PL
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+           
 
 
             #endregion

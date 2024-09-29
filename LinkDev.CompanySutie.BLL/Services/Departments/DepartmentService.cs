@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanySutie.BLL.Services.Departments
 {
-    internal class DepartmentService : IDepartmentService
+    public class DepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository _departmentRepo;
 
@@ -26,7 +26,6 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
                 Id = department.Id,
                 Code = department.Code,
                 Name = department.Name,
-                Description = department.Description,
                 CreationDate = department.CreationDate
             }).AsNoTracking().ToList();
 
