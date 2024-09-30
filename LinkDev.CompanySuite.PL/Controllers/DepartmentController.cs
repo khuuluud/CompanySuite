@@ -8,9 +8,13 @@ namespace LinkDev.CompanySuite.PL.Controllers
 {
     public class DepartmentController : Controller
     {
+
+        #region Services
+
         private readonly IDepartmentService _departmentService;
         private readonly ILogger<DepartmentController> _logger;
-        private readonly IWebHostEnvironment _environment;
+        private readonly IWebHostEnvironment _environment; 
+       
 
         public DepartmentController(IDepartmentService departmentService, ILogger<DepartmentController> logger, IWebHostEnvironment environment)
         {
@@ -18,6 +22,11 @@ namespace LinkDev.CompanySuite.PL.Controllers
             _logger = logger;
             _environment = environment;
         }
+
+        #endregion
+
+        #region Index
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -25,6 +34,9 @@ namespace LinkDev.CompanySuite.PL.Controllers
 
             return View(departments);
         }
+        #endregion
+
+        #region Create
 
         [HttpGet]
         public IActionResult Create()
@@ -68,6 +80,9 @@ namespace LinkDev.CompanySuite.PL.Controllers
 
         }
 
+        #endregion
+
+        #region Details 
 
         public IActionResult Details(int? id)
         {
@@ -81,7 +96,9 @@ namespace LinkDev.CompanySuite.PL.Controllers
 
             return View(department);
         }
+        #endregion
 
+        #region Edit
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -104,7 +121,7 @@ namespace LinkDev.CompanySuite.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit([FromRoute] int id ,DepartmentEditViewModel departmentVM)
+        public IActionResult Edit([FromRoute] int id, DepartmentEditViewModel departmentVM)
         {
             if (!ModelState.IsValid)
                 return View(departmentVM);
@@ -137,7 +154,55 @@ namespace LinkDev.CompanySuite.PL.Controllers
             }
 
             ModelState.AddModelError(string.Empty, message);
-           return View(departmentVM);
-                }
+            return View(departmentVM);
+        }
+        #endregion
+
+        #region Delete
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id is null)
+                return BadRequest();
+
+            var department = _departmentService.GetDepById(id.Value);
+
+            if (department is null)
+                return NotFound();
+            return View(department);
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var message = string.Empty;
+
+            try
+            {
+                var deleted = _departmentService.DeleteDepartment(id);
+
+                if (deleted)
+                    return RedirectToAction(nameof(Index));
+
+
+                message = "The department has not been deleted";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+
+                message = _environment.IsDevelopment() ? ex.Message : "Department is not updated";
+
+            }
+
+            //ModelState.AddModelError(string.Empty, message);
+            return RedirectToAction(nameof(Index));
+
+        } 
+        #endregion
+
+
     }
 }
