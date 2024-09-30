@@ -1,4 +1,5 @@
 ﻿using LinkDev.CompanySuite.DAL.Models.Department;
+using LinkDev.CompanySuite.DAL.Models.Employee;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace LinkDev.CompanySuite.DAL.Persistance.Data
 
 
         public DbSet<Department> Departments { get; set; }
-
+        public DbSet<Employee> Employees { get; set; }
 
     }
 }
