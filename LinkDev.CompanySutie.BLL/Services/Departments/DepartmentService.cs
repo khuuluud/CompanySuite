@@ -35,7 +35,7 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
         {
             var department = _departmentRepo.GetById(id);
 
-            if (department != null) { }
+            if (department != null) {
                 return new DepartmentToReturnDetailsDto()
                 {
                     Id = department.Id,
@@ -49,6 +49,8 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
                     LastModifiedOn = department.LastModifiedOn
 
                 };
+            }
+            
             return null;
         }
         public int CreateDepartment(CreatedDepartmentDto department)
@@ -95,10 +97,7 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
 
         }
 
-        Department? IDepartmentService.GetDepById(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 
 

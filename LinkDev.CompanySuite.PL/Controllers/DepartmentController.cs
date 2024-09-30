@@ -67,6 +67,25 @@ namespace LinkDev.CompanySuite.PL.Controllers
                 }
 
             }
+
+
+
+        }
+
+
+
+
+        public IActionResult Details(int? id)
+        {
+            if (id is null)
+                return BadRequest();
+
+            var department = _departmentService.GetDepById(id.Value);
+
+            if (department is null)
+                return NotFound();
+
+            return View(department);
         }
     }
 }

@@ -12,17 +12,12 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
     {
         IEnumerable<DepartmentToReturnDTO> GetAllDepartments();
 
-        Department? GetDepById(int id);
+        DepartmentToReturnDetailsDto GetDepById(int id);
 
         int CreateDepartment(CreatedDepartmentDto department);
 
         int UpdateDepartment(UpdatedDepartmentDto department);
 
         bool DeleteDepartment(int id);
-
-
-
-
-
     }
 }
