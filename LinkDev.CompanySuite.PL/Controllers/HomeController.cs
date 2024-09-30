@@ -1,4 +1,4 @@
-using LinkDev.CompanySuite.PL.ViewModels;
+using LinkDev.CompanySuite.PL.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

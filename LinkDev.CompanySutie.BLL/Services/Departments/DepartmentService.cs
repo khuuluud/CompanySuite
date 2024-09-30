@@ -19,9 +19,9 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
             _departmentRepo = departmentRepo;
         }
 
-        public IEnumerable<DepartmentToReturnDTO> GetAllDepartments()
+        public IEnumerable<DepartmentDTO> GetAllDepartments()
         {
-            var departments = _departmentRepo.GetAllAsIQueryable().Select(department => new DepartmentToReturnDTO
+            var departments = _departmentRepo.GetAllAsIQueryable().Select(department => new DepartmentDTO
             {
                 Id = department.Id,
                 Code = department.Code,
@@ -31,12 +31,12 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
 
             return departments;
         }
-        public DepartmentToReturnDetailsDto? GetDepById(int id)
+        public DepartmentDetailsDto? GetDepById(int id)
         {
             var department = _departmentRepo.GetById(id);
 
             if (department != null) {
-                return new DepartmentToReturnDetailsDto()
+                return new DepartmentDetailsDto()
                 {
                     Id = department.Id,
                     Code = department.Code,

@@ -1,4 +1,6 @@
-﻿using LinkDev.CompanySutie.BLL.Moduls.DTO;
+﻿using LinkDev.CompanySuite.DAL.Models.Department;
+using LinkDev.CompanySuite.PL.ViewModels.Departments;
+using LinkDev.CompanySutie.BLL.Moduls.DTO;
 using LinkDev.CompanySutie.BLL.Services.Departments;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,24 +57,16 @@ namespace LinkDev.CompanySuite.PL.Controllers
             {
                 _logger.LogError(ex, ex.Message);
 
-                if(_environment.IsDevelopment())
-                {
-                    message = ex.Message;
-                    return View(department);
-                }
-                else
-                {
-                    message = "Department is not created";
-                    return View("Error", message);
-                }
+                message = _environment.IsDevelopment() ? ex.Message : "Department is not created";
 
             }
+
+            ModelState.AddModelError(string.Empty, message);
+            return View(department);
 
 
 
         }
-
-
 
 
         public IActionResult Details(int? id)
@@ -87,5 +81,63 @@ namespace LinkDev.CompanySuite.PL.Controllers
 
             return View(department);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id is null)
+                return BadRequest();
+
+            var department = _departmentService.GetDepById(id.Value);
+
+            if (department is null)
+                return NotFound();
+
+            return View(new DepartmentEditViewModel()
+            {
+                Code = department.Code,
+                Name = department.Name,
+                Description = department.Description,
+                CreationDate = department.CreationDate
+            });
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit([FromRoute] int id ,DepartmentEditViewModel departmentVM)
+        {
+            if (!ModelState.IsValid)
+                return View(departmentVM);
+            var message = string.Empty;
+            try
+            {
+                var departmentToUpdate = new UpdatedDepartmentDto()
+                {
+                    Id = id,
+                    Code = departmentVM.Code,
+                    Name = departmentVM.Name,
+                    Description = departmentVM.Description,
+                    CreationDate = departmentVM.CreationDate
+
+                };
+
+                var Updated = _departmentService.UpdateDepartment(departmentToUpdate) > 0;
+
+                if (Updated)
+                    return RedirectToAction(nameof(Index));
+
+                message = "Department is not updated";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+
+                message = _environment.IsDevelopment() ? ex.Message : "Department is not updated";
+
+            }
+
+            ModelState.AddModelError(string.Empty, message);
+           return View(departmentVM);
+                }
     }
 }

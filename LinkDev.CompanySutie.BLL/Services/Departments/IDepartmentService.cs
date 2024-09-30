@@ -10,9 +10,9 @@ namespace LinkDev.CompanySutie.BLL.Services.Departments
 {
     public interface IDepartmentService
     {
-        IEnumerable<DepartmentToReturnDTO> GetAllDepartments();
+        IEnumerable<DepartmentDTO> GetAllDepartments();
 
-        DepartmentToReturnDetailsDto GetDepById(int id);
+        DepartmentDetailsDto GetDepById(int id);
 
         int CreateDepartment(CreatedDepartmentDto department);
 

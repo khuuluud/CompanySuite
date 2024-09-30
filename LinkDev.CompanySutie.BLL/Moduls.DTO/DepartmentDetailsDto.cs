@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanySutie.BLL.Moduls.DTO
 {
-    public class DepartmentToReturnDetailsDto
+    public class DepartmentDetailsDto
     {
-        public string Name { get; set; } = null!;
+        public int Id { get; set; }
 
         public string Code { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
         public string Description { get; set; } = null!;
 
         public DateOnly CreationDate { get; set; }
-
-        public int Id { get; set; }
 
         public int CreatedBy { get; set; }
 
