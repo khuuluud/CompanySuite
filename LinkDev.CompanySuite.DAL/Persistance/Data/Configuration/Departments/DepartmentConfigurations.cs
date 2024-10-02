@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
+﻿using LinkDev.CompanySuite.DAL.Models .Department;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

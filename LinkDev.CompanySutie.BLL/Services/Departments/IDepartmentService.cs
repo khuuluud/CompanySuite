@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
+﻿using LinkDev.CompanySuite.DAL.Models .Department;
 using LinkDev.CompanySutie.BLL.Moduls.DTO;
 using System;
 using System.Collections.Generic;

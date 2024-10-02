@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Models.Employee
+namespace LinkDev.CompanySuite.DAL.Models.Employees
 {
     public class Employee : ModelBase
     {

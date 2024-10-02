@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
+﻿using LinkDev.CompanySuite.DAL. Models.Department;
 using LinkDev.CompanySuite.PL.ViewModels.Departments;
 using LinkDev.CompanySutie.BLL.Moduls.DTO;
 using LinkDev.CompanySutie.BLL.Services.Departments;

@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
+﻿using LinkDev.CompanySuite.DAL. Models.Department;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

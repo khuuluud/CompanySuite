@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
+﻿using LinkDev.CompanySuite.DAL.Models .Department;
 using LinkDev.CompanySuite.DAL.Persistance.Repositories.Depatments;
 using LinkDev.CompanySutie.BLL.Moduls.DTO;
 using Microsoft.EntityFrameworkCore;

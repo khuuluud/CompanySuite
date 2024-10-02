@@ -1,5 +1,5 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
-using LinkDev.CompanySuite.DAL.Models.Employee;
+﻿using LinkDev.CompanySuite.DAL.Models .Department;
+using LinkDev.CompanySuite.DAL.Models .Employees;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
 ﻿using LinkDev.CompanySuite.DAL.Common.Enum;
-using LinkDev.CompanySuite.DAL.Models.Employee;
+using LinkDev.CompanySuite.DAL.Models .Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
