@@ -32,13 +32,13 @@
             {
                 <tr>
                     
-                    <td>@employee.Name</td>
-                    <td>@employee.Email</td>
-                    <td>@employee.EmployeeType</td>
-                    <td>@employee.Age</td>
-                    <td>@employee.Salary</td>
-                    <td>@employee.IsActive</td>
-                    <td>@employee.Gender</td>
+                    <td>@Html.DisplayFor(E => employee.Name)</td>
+                    <td>@Html.DisplayFor(E => employee.Age)</td>
+                    <td>@Html.DisplayFor(E => employee.Email)</td>
+                    <td>@Html.DisplayFor(E => employee.Salary)</td>
+                    <td>@Html.DisplayFor(E => employee.IsActive)</td>
+                    <td>@Html.DisplayFor(E => employee.EmployeeType)</td>
+                    <td>@Html.DisplayFor(E => employee.Gender)</td>
                     <td>
                    
                         <a asp-controller="Employee" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-warning">

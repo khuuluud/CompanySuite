@@ -23,7 +23,10 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
         {
 
 
-            return _employeeRepository.GetAllAsIQueryable().Select(employee => new EmployeeDTO()
+            return _employeeRepository
+                .GetAllAsIQueryable()
+                .Where(E => !E.IsDeleted)
+                .Select(employee => new EmployeeDTO()
             {
                 Id = employee.Id,
                 Name = employee.Name,
@@ -31,8 +34,8 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 IsActive = employee.IsActive,
                 Salary = employee.Salary,
                 Email = employee.Email,
-                Gender = nameof(employee.Gender),
-                EmployeeType = nameof(employee.EmployeeType),
+                Gender = employee.Gender.ToString(),
+                EmployeeType = employee.EmployeeType.ToString()
 
             });
         }
