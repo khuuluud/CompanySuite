@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinkDev.CompanyBase.DAL.Common.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -30,8 +31,8 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
 
         [Display(Name = "Hiring date")]
         public DateTime HiringDate { get; set; }
-        public string Gender { get; set; } = null!;
-        public string EmployeeType { get; set; } = null!;
+        public Gender Gender { get; set; }
+        public EmpType EmployeeType { get; set; }
 
 
         #region Administration
