@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models.Department;
+﻿using LinkDev.CompanyBase.DAL.Models .Department;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Persistance.Data.Configuration.Departments
+namespace LinkDev.CompanyBase.DAL.Persistance.Data.Configuration.Departments
 {
     internal class DepartmentConfigurations : IEntityTypeConfiguration<Department>
     {

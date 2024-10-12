@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Models
+namespace LinkDev.CompanyBase.DAL.Models
 {
     public class ModelBase
     {

@@ -1,8 +1,8 @@
-using LinkDev.CompanySuite.PL.ViewModels;
+using LinkDev.CompanyBase.PL.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace LinkDev.CompanySuite.PL.Controllers
+namespace LinkDev.CompanyBase.PL.Controllers
 {
     public class HomeController : Controller
     {
@@ -22,6 +22,7 @@ namespace LinkDev.CompanySuite.PL.Controllers
         {
             return View();
         }
+     
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

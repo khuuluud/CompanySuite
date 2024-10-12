@@ -1,4 +1,4 @@
-namespace LinkDev.CompanySuite.PL.ViewModels
+namespace LinkDev.CompanyBase.PL.ViewModels.Common
 {
     public class ErrorViewModel
     {
