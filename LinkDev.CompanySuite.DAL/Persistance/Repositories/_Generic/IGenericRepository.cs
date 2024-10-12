@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanySuite.DAL.Models ;
+﻿using LinkDev.CompanyBase.DAL.Models ;
 
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Persistance.Repositories._Generic
+namespace LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic
 {
     public interface IGenericRepository<T> where T : ModelBase
     {

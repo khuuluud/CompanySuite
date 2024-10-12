@@ -1,5 +1,5 @@
-﻿using LinkDev.CompanySuite.DAL.Common.Enum;
-using LinkDev.CompanySuite.DAL.Models .Employees;
+﻿using LinkDev.CompanyBase.DAL.Common.Enum;
+using LinkDev.CompanyBase.DAL.Models .Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Persistance.Data.Configuration.Employees
+namespace LinkDev.CompanyBase.DAL.Persistance.Data.Configuration.Employees
 {
     internal class EmployeeConfigurations : IEntityTypeConfiguration<Employee>
     {
@@ -28,7 +28,7 @@ namespace LinkDev.CompanySuite.DAL.Persistance.Data.Configuration.Employees
                (type) => type.ToString(),
                (type) => (EmpType)Enum.Parse(typeof(EmpType), type)
                );
-            builder.Property(E => E.LastModifiedOn).HasComputedColumnSql(" GETDATE()");
+           // builder.Property(E => E.LastModifiedOn).HasComputedColumnSql(" GETDATE()");
             builder.Property(E => E.CreatedOn).HasDefaultValueSql("GETDATE()");
         }
     }

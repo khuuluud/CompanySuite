@@ -1,10 +1,10 @@
 ﻿
-using LinkDev.CompanySuite.DAL. Models.Employees;
-using LinkDev.CompanySuite.DAL.Persistance.Data;
-using LinkDev.CompanySuite.DAL.Persistance.Repositories._Generic;
+using LinkDev.CompanyBase.DAL. Models.Employees;
+using LinkDev.CompanyBase.DAL.Persistance.Data;
+using LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace LinkDev.CompanySuite.DAL.Persistance.Repositories.Employees
+namespace LinkDev.CompanyBase.DAL.Persistance.Repositories.Employees
 {
     public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {

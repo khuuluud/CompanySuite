@@ -1,12 +1,12 @@
-﻿using LinkDev.CompanySuite.DAL.Models .Department;
-using LinkDev.CompanySutie.BLL.Moduls.DTO;
+﻿using LinkDev.CompanyBase.DAL.Models.Department;
+using LinkDev.CompanyBase.BLL.Moduls.DTO.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySutie.BLL.Services.Departments
+namespace LinkDev.CompanyBase.BLL.Services.Departments
 {
     public interface IDepartmentService
     {

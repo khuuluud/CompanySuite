@@ -1,13 +1,13 @@
 ﻿
-using LinkDev.CompanySuite.DAL.Models.Employees;
-using LinkDev.CompanySuite.DAL.Persistance.Repositories._Generic;
+using LinkDev.CompanyBase.DAL.Models.Employees;
+using LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Persistance.Repositories.Employees
+namespace LinkDev.CompanyBase.DAL.Persistance.Repositories.Employees
 {
     public interface IEmployeeRepository : IGenericRepository<Employee>
     {

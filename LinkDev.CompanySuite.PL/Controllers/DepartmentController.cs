@@ -1,10 +1,11 @@
-﻿using LinkDev.CompanySuite.DAL. Models.Department;
-using LinkDev.CompanySuite.PL.ViewModels.Departments;
-using LinkDev.CompanySutie.BLL.Moduls.DTO;
-using LinkDev.CompanySutie.BLL.Services.Departments;
+﻿using LinkDev.CompanyBase.DAL.Models.Department;
+using LinkDev.CompanyBase.PL.ViewModels.Departments;
+using LinkDev.CompanyBase.BLL.Moduls.DTO;
+using LinkDev.CompanyBase.BLL.Moduls.DTO.Departments;
+using LinkDev.CompanyBase.BLL.Services.Departments;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LinkDev.CompanySuite.PL.Controllers
+namespace LinkDev.CompanyBase.PL.Controllers
 {
     public class DepartmentController : Controller
     {

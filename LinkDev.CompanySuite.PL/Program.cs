@@ -1,11 +1,13 @@
-using LinkDev.CompanySuite.DAL.Persistance.Data;
-using LinkDev.CompanySuite.DAL.Persistance.Repositories.Depatments;
-using LinkDev.CompanySutie.BLL.Services.Departments;
+using LinkDev.CompanyBase.DAL.Persistance.Data;
+using LinkDev.CompanyBase.DAL.Persistance.Repositories.Depatments;
+using LinkDev.CompanyBase.DAL.Persistance.Repositories.Employees;
+using LinkDev.CompanyBase.BLL.Services.Departments;
+using LinkDev.CompanyBase.BLL.Services.Employees;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace LinkDev.CompanySuite.PL
+namespace LinkDev.CompanyBase.PL
 {
     public class Program
     {
@@ -30,6 +32,8 @@ namespace LinkDev.CompanySuite.PL
 
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
+            builder.Services.AddScoped<IEmployeeRepository , EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeService,  EmployeeService>(); 
             #endregion
 
             var app = builder.Build();

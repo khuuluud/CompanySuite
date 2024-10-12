@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Persistance.Data
+namespace LinkDev.CompanyBase.DAL.Persistance.Data
 {
     internal class AppDbContextSeed
     {

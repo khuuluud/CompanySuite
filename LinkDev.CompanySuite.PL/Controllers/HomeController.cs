@@ -1,8 +1,8 @@
-using LinkDev.CompanySuite.PL.ViewModels.Common;
+using LinkDev.CompanyBase.PL.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace LinkDev.CompanySuite.PL.Controllers
+namespace LinkDev.CompanyBase.PL.Controllers
 {
     public class HomeController : Controller
     {

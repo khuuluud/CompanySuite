@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Common.Enum
+namespace LinkDev.CompanyBase.DAL.Common.Enum
 {
     public enum EmpType
     {

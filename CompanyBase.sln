@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkDev.CompanySuite.PL", "LinkDev.CompanySuite.PL\LinkDev.CompanySuite.PL.csproj", "{EEBF311A-100F-47FA-A033-E1D622F69261}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkDev.CompanyBase.PL", "LinkDev.CompanySuite.PL\LinkDev.CompanyBase.PL.csproj", "{EEBF311A-100F-47FA-A033-E1D622F69261}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkDev.CompanySutie.BLL", "LinkDev.CompanySutie.BLL\LinkDev.CompanySutie.BLL.csproj", "{1858480A-30AF-4458-A2BE-F7329A0B2819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkDev.CompanyBase.BLL", "LinkDev.CompanySutie.BLL\LinkDev.CompanyBase.BLL.csproj", "{1858480A-30AF-4458-A2BE-F7329A0B2819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkDev.CompanySuite.DAL", "LinkDev.CompanySuite.DAL\LinkDev.CompanySuite.DAL.csproj", "{BA1093AB-1766-4D49-B1BA-7B41E8074C6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkDev.CompanyBase.DAL", "LinkDev.CompanySuite.DAL\LinkDev.CompanyBase.DAL.csproj", "{BA1093AB-1766-4D49-B1BA-7B41E8074C6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

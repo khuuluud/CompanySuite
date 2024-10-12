@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 
-namespace LinkDev.CompanySuite.PL.ViewModels.Departments
+namespace LinkDev.CompanyBase.PL.ViewModels.Departments
 {
     public class DepartmentEditViewModel
     {

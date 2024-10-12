@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySutie.BLL.Moduls.DTO
+namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Departments
 {
     public class DepartmentDetailsDto
     {
@@ -23,7 +23,7 @@ namespace LinkDev.CompanySutie.BLL.Moduls.DTO
 
         public int LastModifiedBy { get; set; }
 
-        public DateTime LastModifiedOn { get; set; }
+        public DateTime? LastModifiedOn { get; set; } = null!;
 
     }
 }

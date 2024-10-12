@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.CompanySuite.DAL.Models .Department
+namespace LinkDev.CompanyBase.DAL.Models .Department
 {
     public class Department : ModelBase
     {
