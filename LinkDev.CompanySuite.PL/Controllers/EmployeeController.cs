@@ -1,6 +1,7 @@
 ﻿
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
 using LinkDev.CompanyBase.BLL.Services.Employees;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkDev.CompanyBase.PL.Controllers
@@ -96,67 +97,66 @@ namespace LinkDev.CompanyBase.PL.Controllers
         }
         #endregion
 
-        //#region Edit
-        //[HttpGet]
-        //public IActionResult Edit(int? id)
-        //{
-        //    if (id is null)
-        //        return BadRequest();
+        #region Update
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id is null)
+                return BadRequest();
 
-        //    var employee = _employeeService.GetEmpById(id.Value);
+            var employee = _employeeService.GetEmpById(id.Value);
 
-        //    if (employee is null)
-        //        return NotFound();
+            if (employee is null)
+                return NotFound();
 
-        //    return View(new employeeEditViewModel()
-        //    {
-        //        Code = employee.Code,
-        //        Name = employee.Name,
-        //        Description = employee.Description,
-        //        CreationDate = employee.CreationDate
-        //    });
+            return View(new UpdatedEmployeeDto()
+            {
+                Name = employee.Name,
+                Age = employee.Age,
+                Email = employee.Email,
+                Address = employee.Address,
+                Salary = employee.Salary,
+                PhoneNumber = employee.PhoneNumber,
+                Gender = employee.Gender,
+                EmployeeType = employee.EmployeeType,
+                IsActive = employee.IsActive,
+                HiringDate = employee.HiringDate,
 
-        //}
+            });
 
-        //[HttpPost]
-        //public IActionResult Edit([FromRoute] int id, EmployeeEditViewModel employeeVM)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(employeeVM);
-        //    var message = string.Empty;
-        //    try
-        //    {
-        //        var employeeToUpdate = new UpdatedEmployeeDto()
-        //        {
-        //            Id = id,
-        //            Code = employeeVM.Code,
-        //            Name = employeeVM.Name,
-        //            Description = employeeVM.Description,
-        //            CreationDate = employeeVM.CreationDate
+        }
 
-        //        };
+        [HttpPost]
+        public IActionResult Edit([FromRoute] int id, UpdatedEmployeeDto employee)
+        {
+            if (!ModelState.IsValid)
+                return View(employee);
+            var message = string.Empty;
+            try
+            {
+               
 
-        //        var Updated = _employeeService.UpdateEmp(employeeToUpdate) > 0;
+                var Updated = _employeeService.UpdateEmp(employee) > 0;
 
-        //        if (Updated)
-        //            return RedirectToAction(nameof(Index));
+                if (Updated)
+                    return RedirectToAction(nameof(Index));
 
-        //        message = "employee is not updated";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, ex.Message);
+                message = "employee is not updated";
+            }
+            catch (Exception ex)
+            {
+                _loger.LogError(ex, ex.Message);
 
-        //        message = _environment.IsDevelopment() ? ex.Message : "employee is not updated";
+                message = _environment.IsDevelopment() ? ex.Message : "employee is not updated";
 
-        //    }
+            }
 
-        //    ModelState.AddModelError(string.Empty, message);
-        //    return View(employeeVM);
-        //}
-        //#endregion
+            ModelState.AddModelError(string.Empty, message);
+            return View(employee);
+        }
+        #endregion
 
-        #region Delete
+       #region Delete
 
         [HttpGet]
         public IActionResult Delete(int? id)

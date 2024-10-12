@@ -1,21 +1,18 @@
 ﻿
-@model DepartmentEditViewModel
+
+@model UpdatedEmployeeDto
 @{
     ViewData["Title"] = "Edit";
 }
 
 <div class="row justify-content-center align-items-center flex-column">
-    <h1 class="col-md-6">Edit department</h1>
 
-    <form asp-action="Edit"  class="col-md-6">
+    <h1 class="col-md-8">Edit employee details</h1>
+
+    <form asp-action="Edit" class="col-md-8">
         <div asp-validation-summary="ModelOnly"></div>
 
-        <div class="form-group m-2">
-            <label class="form-label" asp-for="Code">Code</label>
-            <input asp-for="Code" class="form-control" />
-            <span asp-validation-for="Code" class="text-danger"></span>
 
-        </div>
 
         <div class="form-group m-2">
             <label class="form-label" asp-for="Name">Name</label>
@@ -23,24 +20,79 @@
             <span asp-validation-for="Name" class="text-danger"></span>
 
         </div>
-
         <div class="form-group m-2">
-            <label class="form-label" asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
+            <label class="form-label" asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
 
+        </div>
+        <div class="form-group m-2">
+            <label class="form-label" asp-for="Address">Address</label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+
+        </div>
+        <div class="form-group m-2">
+            <label class="form-label" asp-for="Age"></label>
+            <input asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age" class="text-danger"></span>
 
         </div>
 
         <div class="form-group m-2">
-            <label class="form-label" asp-for="CreationDate">Creation Date</label>
-            <input type="date" asp-for="CreationDate" class="form-control" />
+            <label class="form-label" asp-for="Salary"></label>
+            <input asp-for="Salary" class="form-control" />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-group m-2">
+            <label class="form-label" asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-check my-2">
+            <label class="control-label d-block" asp-for="Gender"></label>
+            @foreach (Gender genderoption in Enum.GetValues(typeof(Gender)))
+            {
+                <label class="radio-inline">
+                    <input type="radio" asp-for="Gender" value="@genderoption" />
+                    @genderoption
+                </label>
+            }
+        </div>
+
+
+        <div class="form-check my-2">
+
+            <label class="control-label d-block" asp-for="EmployeeType"></label>
+            <select asp-for="EmployeeType" asp-items="Html.GetEnumSelectList<EmpType>()">
+                <option value="">Select employee type</option>
+            </select>
+
+        </div>
+        <div class="form-check m-2">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label class="form-check-label" asp-for="IsActive"></label>
+
+
+        </div>
+        <div class="form-group m-2">
+            <label class="form-label" asp-for="HiringDate"></label>
+            <input asp-for="HiringDate" class="form-control" />
+            <span asp-validation-for="HiringDate" class="text-danger"></span>
 
         </div>
         <div class="m-3">
 
-            <input type="submit" value="Save" class="btn btn-success"/>
-            <a asp-action="Index" class="btn btn-light">Cancel</a>
+            <input type="submit" value="Save" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-danger">Cancel</a>
         </div>
     </form>
+
 </div>
+
+
 
