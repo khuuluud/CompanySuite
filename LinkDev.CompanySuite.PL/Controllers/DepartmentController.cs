@@ -4,6 +4,7 @@ using LinkDev.CompanyBase.BLL.Moduls.DTO;
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Departments;
 using LinkDev.CompanyBase.BLL.Services.Departments;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LinkDev.CompanyBase.PL.Controllers
 {
@@ -45,6 +46,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CreatedDepartmentDto department)
         {
 
@@ -122,6 +124,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit([FromRoute] int id, DepartmentEditViewModel departmentVM)
         {
             if (!ModelState.IsValid)
@@ -176,6 +179,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             var message = string.Empty;
