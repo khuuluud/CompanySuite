@@ -47,17 +47,25 @@ namespace LinkDev.CompanyBase.PL.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreatedDepartmentDto department)
+        public IActionResult Create(DepartmentViewModel departmentVM)
         {
 
             if (!ModelState.IsValid)
-                return View(department);
+                return View(departmentVM);
             var message = string.Empty;
             try
             {
+               var CreatedDepartment = new CreatedDepartmentDto()
+                {
+                    
+                    Code = departmentVM.Code,
+                    Name = departmentVM.Name,
+                    Description = departmentVM.Description,
+                    CreationDate = departmentVM.CreationDate
 
+                };
 
-                var result = _departmentService.CreateDepartment(department);
+                var result = _departmentService.CreateDepartment(CreatedDepartment);
                 if (result > 0)
                     return RedirectToAction(nameof(Index));
                 else
@@ -66,7 +74,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
                     message = "Department is not created";
                     ModelState.AddModelError(string.Empty, message);
                 }
-                return View(department);
+                return View(departmentVM);
             }
             catch (Exception ex)
             {
@@ -77,7 +85,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             }
 
             ModelState.AddModelError(string.Empty, message);
-            return View(department);
+            return View(departmentVM);
 
 
 
@@ -113,7 +121,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             if (department is null)
                 return NotFound();
 
-            return View(new DepartmentEditViewModel()
+            return View(new DepartmentViewModel()
             {
                 Code = department.Code,
                 Name = department.Name,
@@ -125,7 +133,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, DepartmentEditViewModel departmentVM)
+        public IActionResult Edit([FromRoute] int id, DepartmentViewModel departmentVM)
         {
             if (!ModelState.IsValid)
                 return View(departmentVM);

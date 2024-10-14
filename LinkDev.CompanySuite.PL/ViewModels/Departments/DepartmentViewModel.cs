@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace LinkDev.CompanyBase.PL.ViewModels.Departments
 {
-    public class DepartmentEditViewModel
+    public class DepartmentViewModel
     {
         public string Code { get; set; } = null!;
         public string Name { get; set; } = null!;

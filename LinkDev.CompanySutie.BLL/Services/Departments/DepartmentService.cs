@@ -21,7 +21,10 @@ namespace LinkDev.CompanyBase.BLL.Services.Departments
 
         public IEnumerable<DepartmentDTO> GetAllDepartments()
         {
-            var departments = _departmentRepo.GetAllAsIQueryable().Select(department => new DepartmentDTO
+            var departments = _departmentRepo
+                .GetAllAsIQueryable()
+                .Where(D => !D.IsDeleted)
+                .Select(department => new DepartmentDTO
             {
                 Id = department.Id,
                 Code = department.Code,
