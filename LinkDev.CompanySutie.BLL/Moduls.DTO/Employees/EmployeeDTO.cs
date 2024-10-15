@@ -1,5 +1,5 @@
 ﻿using LinkDev.CompanyBase.DAL.Common.Enum;
-using LinkDev.CompanyBase.DAL.Models.Department;
+using LinkDev.CompanyBase.DAL.Models.Departments;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -28,5 +28,6 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
         public string Gender { get; set; } = null!;
         public string EmployeeType { get; set; } = null!;
 
+        public string Department { get; set; }
     }
     }

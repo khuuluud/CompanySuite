@@ -33,7 +33,7 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
         public DateTime HiringDate { get; set; }
         public Gender Gender { get; set; }
         public EmpType EmployeeType { get; set; }
-
+        public string? Department { get; set; }
 
         #region Administration
 

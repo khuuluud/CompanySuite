@@ -1,6 +1,16 @@
 ﻿
 @model EmployeeViewmodel
 
+@inject IDepartmentService departmentService
+
+@{
+
+    var departments = new SelectList(departmentService.GetAllDepartments() as IEnumerable<DepartmentDTO>, nameof(DepartmentDTO.Id) ,nameof(DepartmentDTO.Name));
+
+
+}
+
+
 <form asp-action="@ViewBag.Action" class="col-md-8">
     <div asp-validation-summary="ModelOnly"></div>
 
@@ -10,18 +20,21 @@
         <span asp-validation-for="Name" class="text-danger"></span>
 
     </div>
+
     <div class="form-group m-2">
         <label class="form-label" asp-for="Email"></label>
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
 
     </div>
+
     <div class="form-group m-2">
         <label class="form-label" asp-for="Address">Address</label>
         <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
 
     </div>
+
     <div class="form-group m-2">
         <label class="form-label" asp-for="Age"></label>
         <input asp-for="Age" class="form-control" />
@@ -43,6 +56,15 @@
 
     </div>
 
+    <div class="form-check">
+
+        <label class="control-label" asp-for="DepartmentId"></label>
+        <select asp-for="DepartmentId" asp-items="@departments" class="form-control">
+            <option value="">Select department</option>
+        </select>
+
+    </div>
+
     <div class="form-check my-2">
         <label class="control-label d-block" asp-for="Gender"></label>
         @foreach (Gender genderoption in Enum.GetValues(typeof(Gender)))
@@ -54,21 +76,20 @@
         }
     </div>
 
-
     <div class="form-check my-2">
-
         <label class="control-label d-block" asp-for="EmployeeType"></label>
         <select asp-for="EmployeeType" asp-items="Html.GetEnumSelectList<EmpType>()">
             <option value="">Select employee type</option>
         </select>
-
     </div>
+
     <div class="form-check m-2">
         <input asp-for="IsActive" class="form-check-input" />
         <label class="form-check-label" asp-for="IsActive"></label>
 
 
     </div>
+
     <div class="form-group m-2">
         <label class="form-label" asp-for="HiringDate"></label>
         <input asp-for="HiringDate" class="form-control" />

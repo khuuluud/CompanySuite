@@ -35,5 +35,10 @@ namespace LinkDev.CompanyBase.PL.ViewModels.Employees
         public Gender Gender { get; set; }
         public EmpType EmployeeType { get; set; }
 
+        [Display(Name ="Department")]
+        public int? DepartmentId { get; set; }
+
+        public string? Department { get; set; }
+
     }
 }

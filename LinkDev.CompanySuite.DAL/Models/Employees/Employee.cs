@@ -1,4 +1,5 @@
 ﻿using LinkDev.CompanyBase.DAL.Common.Enum;
+using LinkDev.CompanyBase.DAL.Models.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,11 @@ namespace LinkDev.CompanyBase.DAL.Models.Employees
 
         public Gender Gender { get; set; }
         public EmpType EmployeeType { get; set; }
+
+        //Foriegn key
+        public int? DepartmentId { get; set; }
+
+        // Navigational Property  [One]
+        public virtual Department? Department { get; set; }
     }
 }

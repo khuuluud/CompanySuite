@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanyBase.DAL.Models .Department;
+﻿using LinkDev.CompanyBase.DAL.Models .Departments;
 using LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic;
 using System;
 using System.Collections.Generic;

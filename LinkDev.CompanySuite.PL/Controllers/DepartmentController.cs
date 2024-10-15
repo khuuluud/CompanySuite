@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanyBase.DAL.Models.Department;
+﻿using LinkDev.CompanyBase.DAL.Models.Departments;
 using LinkDev.CompanyBase.PL.ViewModels.Departments;
 using LinkDev.CompanyBase.BLL.Moduls.DTO;
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Departments;
@@ -65,16 +65,18 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
                 };
 
-                var result = _departmentService.CreateDepartment(CreatedDepartment);
-                if (result > 0)
-                    return RedirectToAction(nameof(Index));
-                else
-                {
+                var created = _departmentService.CreateDepartment(CreatedDepartment) > 0;
 
-                    message = "Department is not created";
-                    ModelState.AddModelError(string.Empty, message);
-                }
-                return View(departmentVM);
+
+                if (created)
+                
+                    TempData["Message"] = "Department has been created successfully";
+
+                else
+                
+                    TempData["Message"] = "Department has not been created successfully";
+                
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {

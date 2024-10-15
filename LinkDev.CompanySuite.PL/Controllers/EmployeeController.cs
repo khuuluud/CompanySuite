@@ -1,5 +1,6 @@
 ﻿
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
+using LinkDev.CompanyBase.BLL.Services.Departments;
 using LinkDev.CompanyBase.BLL.Services.Employees;
 using LinkDev.CompanyBase.PL.ViewModels.Employees;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +15,14 @@ namespace LinkDev.CompanyBase.PL.Controllers
         private readonly IEmployeeService _employeeService;
         private readonly ILogger<EmployeeController> _loger;
         private readonly IWebHostEnvironment _environment;
+        private readonly IDepartmentService? _departmentService;
 
         public EmployeeController(IEmployeeService employeeService, ILogger<EmployeeController> loger, IWebHostEnvironment environment)
         {
             _employeeService = employeeService;
             _loger = loger;
             _environment = environment;
-
+            
         }
         #endregion
 
@@ -40,6 +42,8 @@ namespace LinkDev.CompanyBase.PL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+          
+
             return View();
         }
         [HttpPost]
@@ -118,6 +122,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+          
             if (id is null)
                 return BadRequest();
 
@@ -126,6 +131,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             if (employee is null)
                 return NotFound();
 
+           
             return View(new EmployeeViewmodel()
             {
                 Name = employee.Name,

@@ -23,7 +23,8 @@ namespace LinkDev.CompanyBase.PL
             //builder.Services.AddScoped<DbContextOptions<ApplicationDbContext>>();
             builder.Services.AddDbContext<ApplicationDbContext>((OptionsBuilder) =>
             {
-                OptionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                OptionsBuilder.UseLazyLoadingProxies()
+                .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 
             });

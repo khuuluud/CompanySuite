@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LinkDev.CompanyBase.BLL.Services.Employees
 {
@@ -21,11 +22,10 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
 
         public IEnumerable<EmployeeDTO> GetAllEmployees()
         {
-
-
             return _employeeRepository
                 .GetAllAsIQueryable()
                 .Where(E => !E.IsDeleted)
+                .Include(E => E.Department)
                 .Select(employee => new EmployeeDTO()
             {
                 Id = employee.Id,
@@ -35,8 +35,8 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 Salary = employee.Salary,
                 Email = employee.Email,
                 Gender = employee.Gender.ToString(),
-                EmployeeType = employee.EmployeeType.ToString()
-
+                EmployeeType = employee.EmployeeType.ToString(),
+                Department = employee.Department.Name
             });
         }
 
@@ -59,7 +59,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                     HiringDate = employee.HiringDate,
                     Gender = employee.Gender,
                     EmployeeType = employee.EmployeeType,
-
+                    Department = employee.Department.Name
                 };
             return null;
         }
@@ -78,6 +78,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 HiringDate = employeeDto.HiringDate,
                 Gender = employeeDto.Gender,
                 EmployeeType = employeeDto.EmployeeType,
+                DepartmentId = employeeDto.DepartmentId,
                 CreatedBy = 1,
                 LastModifiedBy = 1,
                 LastModifiedOn = DateTime.UtcNow
@@ -101,6 +102,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 HiringDate = employeeDto.HiringDate,
                 Gender = employeeDto.Gender,
                 EmployeeType = employeeDto.EmployeeType,
+                DepartmentId = employeeDto.DepartmentId,
                 CreatedBy = 1,
                 LastModifiedBy = 1,
                 LastModifiedOn = DateTime.UtcNow

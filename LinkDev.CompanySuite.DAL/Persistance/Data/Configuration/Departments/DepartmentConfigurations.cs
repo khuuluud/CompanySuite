@@ -1,4 +1,5 @@
-﻿using LinkDev.CompanyBase.DAL.Models .Department;
+﻿using LinkDev.CompanyBase.DAL.Models .Departments;
+using LinkDev.CompanyBase.DAL.Models.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -18,6 +19,15 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Data.Configuration.Departments
             builder.Property(D => D.Code).HasColumnType("varchar(20)").HasMaxLength(50).IsRequired();
             builder.Property(D => D.LastModifiedOn).HasComputedColumnSql(" GETDATE()");
             builder.Property(D => D.CreatedOn).HasDefaultValueSql("GETDATE()");
+
+            builder.HasMany(D => D.Employees)
+                   .WithOne(E => E.Department)
+                   .HasForeignKey(E => E.DepartmentId)
+                   .OnDelete(DeleteBehavior.SetNull);
+        
+        
+        
+        
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using LinkDev.CompanyBase.DAL.Models .Department;
+﻿using LinkDev.CompanyBase.DAL.Models .Departments;
 using LinkDev.CompanyBase.DAL.Models .Employees;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,11 +16,6 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Data
         {
             
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("server = .; database = CompanySuite; Trusted_Connection = true; TrustServerCertificate = true;");
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
