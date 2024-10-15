@@ -1,7 +1,7 @@
 ﻿
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
 using LinkDev.CompanyBase.BLL.Services.Employees;
-
+using LinkDev.CompanyBase.PL.ViewModels.Employees;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkDev.CompanyBase.PL.Controllers
@@ -44,17 +44,33 @@ namespace LinkDev.CompanyBase.PL.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreatedEmployeeDto employee)
+        public IActionResult Create(EmployeeViewmodel employeeVM)
         {
 
             if (!ModelState.IsValid)
-                return View(employee);
+                return View(employeeVM);
             var message = string.Empty;
             try
             {
 
+                var CreatedEmp = new CreatedEmployeeDto()
+                {
+                    Name = employeeVM.Name,
+                    Age = employeeVM.Age,
+                    Email = employeeVM.Email,
+                    Address = employeeVM.Address,
+                    Salary = employeeVM.Salary,
+                    PhoneNumber = employeeVM.PhoneNumber,
+                    Gender = employeeVM.Gender,
+                    EmployeeType = employeeVM.EmployeeType,
+                    IsActive = employeeVM.IsActive,
 
-                var result = _employeeService.CreateEmployee(employee);
+
+
+                };
+
+
+                var result = _employeeService.CreateEmployee(CreatedEmp);
                 if (result > 0)
                     return RedirectToAction(nameof(Index));
                 else
@@ -63,7 +79,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
                     message = "employee is not created";
                     ModelState.AddModelError(string.Empty, message);
                 }
-                return View(employee);
+                return View(employeeVM);
             }
             catch (Exception ex)
             {
@@ -74,7 +90,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             }
 
             ModelState.AddModelError(string.Empty, message);
-            return View(employee);
+            return View(employeeVM);
 
 
 
@@ -110,7 +126,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             if (employee is null)
                 return NotFound();
 
-            return View(new UpdatedEmployeeDto()
+            return View(new EmployeeViewmodel()
             {
                 Name = employee.Name,
                 Age = employee.Age,
@@ -129,16 +145,31 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, UpdatedEmployeeDto employee)
+        public IActionResult Edit([FromRoute] int id, EmployeeViewmodel employeeVM)
         {
             if (!ModelState.IsValid)
-                return View(employee);
+                return View(employeeVM);
             var message = string.Empty;
             try
             {
-               
+                var UpdatedEmp = new UpdatedEmployeeDto()
+                {
+                    Id = id,
+                    Name = employeeVM.Name,
+                    Age = employeeVM.Age,
+                    Email = employeeVM.Email,
+                    Address = employeeVM.Address,
+                    Salary = employeeVM.Salary,
+                    PhoneNumber = employeeVM.PhoneNumber,
+                    Gender = employeeVM.Gender,
+                    EmployeeType = employeeVM.EmployeeType,
+                    IsActive = employeeVM.IsActive,
 
-                var Updated = _employeeService.UpdateEmp(employee) > 0;
+
+
+                };
+
+                var Updated = _employeeService.UpdateEmp(UpdatedEmp) > 0;
 
                 if (Updated)
                     return RedirectToAction(nameof(Index));
@@ -154,7 +185,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             }
 
             ModelState.AddModelError(string.Empty, message);
-            return View(employee);
+            return View(employeeVM);
         }
         #endregion
 
