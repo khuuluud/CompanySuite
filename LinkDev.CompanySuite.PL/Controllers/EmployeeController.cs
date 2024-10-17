@@ -68,6 +68,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
                     Gender = employeeVM.Gender,
                     EmployeeType = employeeVM.EmployeeType,
                     IsActive = employeeVM.IsActive,
+                    DepartmentId= employeeVM.DepartmentId,
 
 
 

@@ -1,12 +1,6 @@
 ﻿using LinkDev.CompanyBase.DAL.Models.Employees;
-using LinkDev.CompanyBase.DAL.Persistance.Data;
 using LinkDev.CompanyBase.DAL.Persistance.Repositories.Employees;
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinkDev.CompanyBase.BLL.Services.Employees
@@ -46,8 +40,6 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             if (employee is { })
                 return new EmployeeDetailsDto()
                 {
-
-
                     Id = employee.Id,
                     Name = employee.Name,
                     Age = employee.Age,

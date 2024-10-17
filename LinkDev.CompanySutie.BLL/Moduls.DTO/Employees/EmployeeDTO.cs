@@ -28,6 +28,6 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
         public string Gender { get; set; } = null!;
         public string EmployeeType { get; set; } = null!;
 
-        public string Department { get; set; }
+        public string? Department { get; set; }
     }
     }
