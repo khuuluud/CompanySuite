@@ -12,9 +12,9 @@ namespace LinkDev.CompanyBase.PL.Mapping
             #region Department
 
             CreateMap<DepartmentDetailsDto, DepartmentViewModel>();
-                //.ForMember(dest => dest.Name , config => config.MapFrom(src => src.Name));
-            
+            //.ForMember(dest => dest.Name , config => config.MapFrom(src => src.Name));
 
+            CreateMap<DepartmentViewModel, CreatedDepartmentDto>();
 
 
 

@@ -57,15 +57,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             var message = string.Empty;
             try
             {
-               var CreatedDepartment = new CreatedDepartmentDto()
-                {
-                    
-                    Code = departmentVM.Code,
-                    Name = departmentVM.Name,
-                    Description = departmentVM.Description,
-                    CreationDate = departmentVM.CreationDate
-
-                };
+                var CreatedDepartment = _mapper.Map<CreatedDepartmentDto>(departmentVM);
 
                 var created = _departmentService.CreateDepartment(CreatedDepartment) > 0;
 
@@ -140,16 +132,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             var message = string.Empty;
             try
             {
-                var departmentToUpdate = new UpdatedDepartmentDto()
-                {
-                    Id = id,
-                    Code = departmentVM.Code,
-                    Name = departmentVM.Name,
-                    Description = departmentVM.Description,
-                    CreationDate = departmentVM.CreationDate
-
-                };
-
+                var departmentToUpdate = _mapper.Map<UpdatedDepartmentDto>(departmentVM);
                 var Updated = _departmentService.UpdateDepartment(departmentToUpdate) > 0;
 
                 if (Updated)
