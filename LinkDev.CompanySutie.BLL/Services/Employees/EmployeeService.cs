@@ -14,11 +14,11 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             _employeeRepository = employeeRepository;
         }
 
-        public IEnumerable<EmployeeDTO> GetAllEmployees()
+        public IEnumerable<EmployeeDTO> GetEmployees(string search)
         {
             return _employeeRepository
                 .GetAllAsIQueryable()
-                .Where(E => !E.IsDeleted)
+                .Where(E => !E.IsDeleted && (string.IsNullOrEmpty(search) || E.Name.ToLower().Contains(search.ToLower())))
                 .Include(E => E.Department)
                 .Select(employee => new EmployeeDTO()
             {

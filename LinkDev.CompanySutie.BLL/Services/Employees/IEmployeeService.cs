@@ -10,7 +10,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
 {
     public interface IEmployeeService
     {
-        IEnumerable<EmployeeDTO> GetAllEmployees();
+        IEnumerable<EmployeeDTO> GetEmployees(string search);
 
         EmployeeDetailsDto GetEmpById(int id);
 

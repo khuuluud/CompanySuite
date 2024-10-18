@@ -6,6 +6,8 @@ using LinkDev.CompanyBase.BLL.Services.Employees;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using AutoMapper;
+using LinkDev.CompanyBase.PL.Mapping;
 
 namespace LinkDev.CompanyBase.PL
 {
@@ -34,7 +36,8 @@ namespace LinkDev.CompanyBase.PL
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
             builder.Services.AddScoped<IEmployeeRepository , EmployeeRepository>();
-            builder.Services.AddScoped<IEmployeeService,  EmployeeService>(); 
+            builder.Services.AddScoped<IEmployeeService,  EmployeeService>();
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
             #endregion
 
             var app = builder.Build();

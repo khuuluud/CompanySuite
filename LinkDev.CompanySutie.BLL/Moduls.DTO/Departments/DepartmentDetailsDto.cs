@@ -15,6 +15,8 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Departments
 
         public string Description { get; set; } = null!;
 
+        #region Administration 
+
         public DateOnly CreationDate { get; set; }
 
         public int CreatedBy { get; set; }
@@ -23,7 +25,8 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Departments
 
         public int LastModifiedBy { get; set; }
 
-        public DateTime? LastModifiedOn { get; set; } = null!;
+        public DateTime? LastModifiedOn { get; set; } = null!; 
+        #endregion
 
     }
 }

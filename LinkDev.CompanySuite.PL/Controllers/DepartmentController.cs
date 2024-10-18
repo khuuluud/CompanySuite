@@ -5,6 +5,7 @@ using LinkDev.CompanyBase.BLL.Moduls.DTO.Departments;
 using LinkDev.CompanyBase.BLL.Services.Departments;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 
 namespace LinkDev.CompanyBase.PL.Controllers
 {
@@ -15,14 +16,15 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         private readonly IDepartmentService _departmentService;
         private readonly ILogger<DepartmentController> _logger;
-        private readonly IWebHostEnvironment _environment; 
-       
+        private readonly IWebHostEnvironment _environment;
+        private readonly IMapper _mapper;
 
-        public DepartmentController(IDepartmentService departmentService, ILogger<DepartmentController> logger, IWebHostEnvironment environment)
+        public DepartmentController(IDepartmentService departmentService, ILogger<DepartmentController> logger, IWebHostEnvironment environment , IMapper Mapper)
         {
             _departmentService = departmentService;
             _logger = logger;
             _environment = environment;
+            _mapper = Mapper;
         }
 
         #endregion
@@ -123,13 +125,9 @@ namespace LinkDev.CompanyBase.PL.Controllers
             if (department is null)
                 return NotFound();
 
-            return View(new DepartmentViewModel()
-            {
-                Code = department.Code,
-                Name = department.Name,
-                Description = department.Description,
-                CreationDate = department.CreationDate
-            });
+            var departmentVM = _mapper.Map<DepartmentDetailsDto, DepartmentViewModel>(department);
+
+          return View(departmentVM);
 
         }
 

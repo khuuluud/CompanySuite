@@ -9,9 +9,25 @@
 
 <h1 class="p-3">All Employees</h1>
 
-<a asp-controller="Employee" asp-action="Create" class="btn btn-primary m-3">Create new employee</a>
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary m-2">Create new employee</a>
+
+
+<form asp-action="Index" method="get" class="row justify-content-center align-items-center m-5">
+    <div class="row col-md-8">
+        <div class="col-md-8">
+            <input type="text" name="search" class="form-control" id="searchInp" placeholder="Search by name"/>
+        </div>
+        <div class="col-md-4">
+            <input type="submit" value="Search" class="btn btn-success "/>
+        </div>
+    </div>
+</form>
+
+
+<div class="row justify-content-center align-items-center flex-column">
 @if(Model.Count() > 0)
 {
+    
     <table class="table table-striped table-hover text-center">
         <thead>
             <tr>
@@ -28,10 +44,10 @@
                 <th>Delete</th>
             </tr>
         </thead>
-        <tbody class="">
+        <tbody >
             @foreach (var employee in Model)
             {
-                <tr>
+                <tr >
                     
                     <td>@Html.DisplayFor(E => employee.Name)</td>
                     <td>@Html.DisplayFor(E => employee.Age)</td>
@@ -41,7 +57,7 @@
                     <td>@Html.DisplayFor(E => employee.IsActive)</td>
                     <td>@Html.DisplayFor(E => employee.EmployeeType)</td>
                     <td>@Html.DisplayFor(E => employee.Gender)</td>
-                    <partial name="_ButtonsPartial" model="@employee.Id" />
+                    <partial name="_ButtonsPartial" model="@employee.Id"/>
                 </tr>
 
                 //Modal
@@ -80,3 +96,4 @@ else
     </div>
 }
 
+</div>
