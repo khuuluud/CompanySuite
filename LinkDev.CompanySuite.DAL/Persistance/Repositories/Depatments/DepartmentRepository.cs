@@ -18,5 +18,6 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Repositories.Depatments
             
         }
 
+   
     }
 }

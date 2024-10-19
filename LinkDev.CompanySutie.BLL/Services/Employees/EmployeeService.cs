@@ -2,21 +2,23 @@
 using LinkDev.CompanyBase.DAL.Persistance.Repositories.Employees;
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
 using Microsoft.EntityFrameworkCore;
+using LinkDev.CompanyBase.DAL.Persistance.unitOfWork;
 
 namespace LinkDev.CompanyBase.BLL.Services.Employees
 {
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IUnitOfWork unitOfWork)
         {
-            _employeeRepository = employeeRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public IEnumerable<EmployeeDTO> GetEmployees(string search)
         {
-            return _employeeRepository
+            return _unitOfWork.EmployeeRepository
                 .GetAllAsIQueryable()
                 .Where(E => !E.IsDeleted && (string.IsNullOrEmpty(search) || E.Name.ToLower().Contains(search.ToLower())))
                 .Include(E => E.Department)
@@ -36,7 +38,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
 
         public EmployeeDetailsDto GetEmpById(int id)
         {
-            var employee = _employeeRepository.GetById(id);
+            var employee = _unitOfWork.EmployeeRepository.GetById(id);
             if (employee is { })
                 return new EmployeeDetailsDto()
                 {
@@ -76,7 +78,9 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 LastModifiedOn = DateTime.UtcNow
             };
 
-            return _employeeRepository.Add(employee);
+            _unitOfWork.EmployeeRepository.Add(employee);
+
+            return _unitOfWork.Complete();
         }
 
         public int UpdateEmp(UpdatedEmployeeDto employeeDto)
@@ -100,15 +104,17 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 LastModifiedOn = DateTime.UtcNow
             };
 
-            return _employeeRepository.Update(employee);
+           _unitOfWork.EmployeeRepository.Update(employee);
+            return _unitOfWork.Complete();
         }
 
         public bool DeleteEmp(int id)
         {
-            var employee = _employeeRepository.GetById(id);
+            var emprepo = _unitOfWork.EmployeeRepository;
+            var employee = emprepo.GetById(id);
             if (employee is { })
-                return _employeeRepository.Delete(employee) > 0;
-            return false;
+                emprepo.Delete(employee);
+            return _unitOfWork.Complete() > 0;
         }
 
        

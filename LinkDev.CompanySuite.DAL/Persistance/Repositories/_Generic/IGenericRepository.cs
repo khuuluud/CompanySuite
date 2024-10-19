@@ -17,11 +17,11 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic
 
         T? GetById(int id);
 
-        int Add(T entity);
+        void Add(T entity);
 
-        int Update(T entity);
+        void Update(T entity);
 
-        int Delete(T entity);
+        void Delete(T entity);
 
     }
 }

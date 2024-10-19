@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using AutoMapper;
 using LinkDev.CompanyBase.PL.Mapping;
+using LinkDev.CompanyBase.DAL.Persistance.unitOfWork;
 
 namespace LinkDev.CompanyBase.PL
 {
@@ -31,11 +32,13 @@ namespace LinkDev.CompanyBase.PL
 
             });
 
-            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
+
+         
 
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
-            builder.Services.AddScoped<IEmployeeRepository , EmployeeRepository>();
+           
             builder.Services.AddScoped<IEmployeeService,  EmployeeService>();
             builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
             #endregion

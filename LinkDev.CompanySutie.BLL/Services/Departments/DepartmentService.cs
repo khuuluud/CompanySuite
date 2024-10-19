@@ -7,21 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinkDev.CompanyBase.DAL.Persistance.unitOfWork;
 
 namespace LinkDev.CompanyBase.BLL.Services.Departments
 {
     public class DepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository _departmentRepo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DepartmentService(IDepartmentRepository departmentRepo)
+        public DepartmentService(IUnitOfWork unitOfWork)
         {
-            _departmentRepo = departmentRepo;
+           
+            _unitOfWork = unitOfWork;
         }
 
         public IEnumerable<DepartmentDTO> GetAllDepartments()
         {
-            var departments = _departmentRepo
+            var departments = _unitOfWork.DepartmentRepository
                 .GetAllAsIQueryable()
                 .Where(D => !D.IsDeleted)
                 .Select(department => new DepartmentDTO
@@ -36,7 +39,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Departments
         }
         public DepartmentDetailsDto? GetDepById(int id)
         {
-            var department = _departmentRepo.GetById(id);
+            var department = _unitOfWork.DepartmentRepository.GetById(id);
 
             if (department != null) {
                 return new DepartmentDetailsDto()
@@ -71,7 +74,8 @@ namespace LinkDev.CompanyBase.BLL.Services.Departments
 
 
             };
-            return _departmentRepo.Add(createdDepartment);
+             _unitOfWork.DepartmentRepository.Add(createdDepartment);
+            return _unitOfWork.Complete();
         }
 
         public int UpdateDepartment(UpdatedDepartmentDto department)
@@ -88,15 +92,17 @@ namespace LinkDev.CompanyBase.BLL.Services.Departments
 
 
             };
-            return _departmentRepo.Update(createdDepartment);
+            _unitOfWork.DepartmentRepository.Update(createdDepartment);
+            return _unitOfWork.Complete();
         }
 
         public bool DeleteDepartment(int id)
         {
-            var department = _departmentRepo.GetById(id);
+            var deprepo = _unitOfWork.DepartmentRepository;
+            var department = deprepo.GetById(id);
             if (department is { })
-                return _departmentRepo.Delete(department) > 0;
-            return false;
+                 deprepo.Delete(department);
+            return _unitOfWork.Complete() > 0;
 
         }
 
