@@ -3,6 +3,7 @@ using LinkDev.CompanyBase.DAL.Persistance.Repositories.Employees;
 using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
 using Microsoft.EntityFrameworkCore;
 using LinkDev.CompanyBase.DAL.Persistance.unitOfWork;
+using LinkDev.CompanyBase.BLL.Common.structureServices.Attachments;
 
 namespace LinkDev.CompanyBase.BLL.Services.Employees
 {
@@ -10,10 +11,12 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IAttachmentService _attachmentService;
 
-        public EmployeeService(IUnitOfWork unitOfWork)
+        public EmployeeService(IUnitOfWork unitOfWork , IAttachmentService attachmentService)
         {
             _unitOfWork = unitOfWork;
+            _attachmentService = attachmentService;
         }
 
         public IEnumerable<EmployeeDTO> GetEmployees(string search)
@@ -60,6 +63,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
 
         public int CreateEmployee(CreatedEmployeeDto employeeDto)
         {
+        
             var employee = new Employee()
             {
                 Name = employeeDto.Name,
@@ -73,10 +77,15 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 Gender = employeeDto.Gender,
                 EmployeeType = employeeDto.EmployeeType,
                 DepartmentId = employeeDto.DepartmentId,
+               
                 CreatedBy = 1,
                 LastModifiedBy = 1,
                 LastModifiedOn = DateTime.UtcNow
             };
+
+            if(employeeDto.Img is not null)
+          employee.Img =  _attachmentService.Upload(employeeDto.Img, "Images");
+
 
             _unitOfWork.EmployeeRepository.Add(employee);
 

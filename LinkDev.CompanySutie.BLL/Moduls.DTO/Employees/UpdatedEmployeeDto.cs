@@ -41,6 +41,6 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
 
         public int? DepartmentId { get; set; }
 
-
+        public string? Img { get; set; }
     }
 }

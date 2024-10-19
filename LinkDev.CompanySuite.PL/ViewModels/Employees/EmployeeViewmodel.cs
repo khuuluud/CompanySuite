@@ -40,5 +40,7 @@ namespace LinkDev.CompanyBase.PL.ViewModels.Employees
 
         public string? Department { get; set; }
 
+        public IFormFile? Img { get; set; }
+
     }
 }

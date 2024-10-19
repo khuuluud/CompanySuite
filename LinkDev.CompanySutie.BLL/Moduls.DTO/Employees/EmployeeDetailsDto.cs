@@ -34,6 +34,7 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
         public Gender Gender { get; set; }
         public EmpType EmployeeType { get; set; }
         public string? Department { get; set; }
+        public string? Img { get; set; }
 
         #region Administration
 

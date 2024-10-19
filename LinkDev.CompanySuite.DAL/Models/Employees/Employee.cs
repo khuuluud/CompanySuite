@@ -35,5 +35,7 @@ namespace LinkDev.CompanyBase.DAL.Models.Employees
 
         // Navigational Property  [One]
         public virtual Department? Department { get; set; }
+
+        public string? Img { get; set; }
     }
 }

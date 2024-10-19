@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using AutoMapper;
 using LinkDev.CompanyBase.PL.Mapping;
 using LinkDev.CompanyBase.DAL.Persistance.unitOfWork;
+using LinkDev.CompanyBase.BLL.Common.structureServices.Attachments;
 
 namespace LinkDev.CompanyBase.PL
 {
@@ -34,7 +35,7 @@ namespace LinkDev.CompanyBase.PL
 
             builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 
-         
+            builder.Services.AddTransient<IAttachmentService, AttachmentService>();
 
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 

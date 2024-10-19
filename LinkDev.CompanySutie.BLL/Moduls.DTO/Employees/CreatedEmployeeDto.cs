@@ -1,4 +1,5 @@
 ﻿using LinkDev.CompanyBase.DAL.Common.Enum;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -40,6 +41,8 @@ namespace LinkDev.CompanyBase.BLL.Moduls.DTO.Employees
         public EmpType EmployeeType { get; set; }
 
         public int? DepartmentId { get; set; }
+
+        public IFormFile? Img { get; set; }
 
     }
 }

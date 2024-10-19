@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanyBase.BLL.Common.structureServices.Attachments
 {
-    internal interface IAttachmentService
+    public interface IAttachmentService
     {
 
         string Upload(IFormFile file, string folderName);
