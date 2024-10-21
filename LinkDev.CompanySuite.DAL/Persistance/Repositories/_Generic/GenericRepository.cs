@@ -19,14 +19,14 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic
         }
 
 
-        public IEnumerable<T> GetAll(bool withAsNoTracking = true)
+        public async Task<IEnumerable<T>> GetAllAsync(bool withAsNoTracking = true)
         {
             if (withAsNoTracking)
-                return _DbContext.Set<T>().Where(X => !X.IsDeleted).AsNoTracking().ToList();
-            return _DbContext.Set<T>().Where(X => !X.IsDeleted).ToList();
+                return await _DbContext.Set<T>().Where(X => !X.IsDeleted).AsNoTracking().ToListAsync();
+            return await _DbContext.Set<T>().Where(X => !X.IsDeleted).ToListAsync();
         }
 
-        public IQueryable<T> GetAllAsIQueryable()
+        public  IQueryable<T> GetAllAsIQueryable()
         {
             return _DbContext.Set<T>();
         }
@@ -36,9 +36,9 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Repositories._Generic
            
         }
 
-        public T? GetById(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            return _DbContext.Set<T>().Find(id);
+            return await _DbContext.Set<T>().FindAsync(id);
         }
 
         public void Update( T entity)

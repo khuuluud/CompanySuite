@@ -32,9 +32,9 @@ namespace LinkDev.CompanyBase.PL.Controllers
         #region Index
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var departments = _departmentService.GetAllDepartments();
+            var departments = await _departmentService.GetAllDepartmentsAsync();
 
             return View(departments);
         }
@@ -49,7 +49,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(DepartmentViewModel departmentVM)
+        public async Task<IActionResult> Create(DepartmentViewModel departmentVM)
         {
 
             if (!ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             {
                 var CreatedDepartment = _mapper.Map<CreatedDepartmentDto>(departmentVM);
 
-                var created = _departmentService.CreateDepartment(CreatedDepartment) > 0;
+                var created = await _departmentService.CreateDepartmentAsync(CreatedDepartment) > 0;
 
 
                 if (created)
@@ -91,12 +91,12 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         #region Details 
 
-        public IActionResult Details(int? id)
+        public async  Task<IActionResult> Details(int? id)
         {
             if (id is null)
                 return BadRequest();
 
-            var department = _departmentService.GetDepById(id.Value);
+            var department = await _departmentService.GetDepByIdAsync(id.Value);
 
             if (department is null)
                 return NotFound();
@@ -107,12 +107,12 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         #region Edit
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id is null)
                 return BadRequest();
 
-            var department = _departmentService.GetDepById(id.Value);
+            var department = await _departmentService.GetDepByIdAsync(id.Value);
 
             if (department is null)
                 return NotFound();
@@ -125,7 +125,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, DepartmentViewModel departmentVM)
+        public async Task<IActionResult> Edit([FromRoute] int id, DepartmentViewModel departmentVM)
         {
             if (!ModelState.IsValid)
                 return View(departmentVM);
@@ -133,7 +133,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             try
             {
                 var departmentToUpdate = _mapper.Map<UpdatedDepartmentDto>(departmentVM);
-                var Updated = _departmentService.UpdateDepartment(departmentToUpdate) > 0;
+                var Updated = await _departmentService.UpdateDepartmentAsync(departmentToUpdate) > 0;
 
                 if (Updated)
                     return RedirectToAction(nameof(Index));
@@ -161,7 +161,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
             if (id is null)
                 return BadRequest();
 
-            var department = _departmentService.GetDepById(id.Value);
+            var department = _departmentService.GetDepByIdAsync(id.Value);
 
             if (department is null)
                 return NotFound();
@@ -171,13 +171,13 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var message = string.Empty;
 
             try
             {
-                var deleted = _departmentService.DeleteDepartment(id);
+                var deleted =await _departmentService.DeleteDepartmentAsync(id);
 
                 if (deleted)
                     return RedirectToAction(nameof(Index));

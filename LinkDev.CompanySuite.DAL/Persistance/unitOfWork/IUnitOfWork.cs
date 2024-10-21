@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanyBase.DAL.Persistance.unitOfWork
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IAsyncDisposable
     {
         public IEmployeeRepository EmployeeRepository { get; }
 
         public IDepartmentRepository DepartmentRepository { get;}
 
-        int Complete();
+        Task<int> CompleteAsync();
 
      
     

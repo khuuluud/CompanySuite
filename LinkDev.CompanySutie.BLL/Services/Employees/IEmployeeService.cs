@@ -10,15 +10,15 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
 {
     public interface IEmployeeService
     {
-        IEnumerable<EmployeeDTO> GetEmployees(string search);
+        Task<IEnumerable<EmployeeDTO>> GetEmployeesAsync(string search);
 
-        EmployeeDetailsDto GetEmpById(int id);
+        Task<EmployeeDetailsDto> GetEmpByIdAsync(int id);
 
-        int CreateEmployee(CreatedEmployeeDto employeeDto);
+        Task<int> CreateEmployeeAsync(CreatedEmployeeDto employeeDto);
 
-        int UpdateEmp(UpdatedEmployeeDto employeeDto);
+        Task<int> UpdateEmpAsync(UpdatedEmployeeDto employeeDto);
 
-        bool DeleteEmp(int id);
+        Task<bool> DeleteEmpAsync(int id);
 
 
     }

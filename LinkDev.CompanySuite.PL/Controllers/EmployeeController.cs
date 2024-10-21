@@ -29,9 +29,9 @@ namespace LinkDev.CompanyBase.PL.Controllers
         #region Index
 
         [HttpGet]
-        public IActionResult Index(string search)
+        public async Task<IActionResult> Index(string search)
         {
-            var employees = _employeeService.GetEmployees(search);
+            var employees = await _employeeService.GetEmployeesAsync(search);
 
             return View(employees);
         }
@@ -46,7 +46,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(EmployeeViewmodel employeeVM)
+        public async Task<IActionResult> Create(EmployeeViewmodel employeeVM)
         {
 
             if (!ModelState.IsValid)
@@ -73,7 +73,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
                 };
 
 
-                var result = _employeeService.CreateEmployee(CreatedEmp);
+                var result = await _employeeService.CreateEmployeeAsync(CreatedEmp);
                 if (result > 0)
                     return RedirectToAction(nameof(Index));
                 else
@@ -103,12 +103,12 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         #region Details 
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id is null)
                 return BadRequest();
 
-            var employee = _employeeService.GetEmpById(id.Value);
+            var employee = await _employeeService.GetEmpByIdAsync(id.Value);
 
             if (employee is null)
                 return NotFound();
@@ -119,13 +119,13 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         #region Update
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
           
             if (id is null)
                 return BadRequest();
 
-            var employee = _employeeService.GetEmpById(id.Value);
+            var employee = await _employeeService.GetEmpByIdAsync(id.Value);
 
             if (employee is null)
                 return NotFound();
@@ -150,7 +150,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, EmployeeViewmodel employeeVM)
+        public async Task<IActionResult> Edit([FromRoute] int id, EmployeeViewmodel employeeVM)
         {
             if (!ModelState.IsValid)
                 return View(employeeVM);
@@ -174,7 +174,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
                 };
 
-                var Updated = _employeeService.UpdateEmp(UpdatedEmp) > 0;
+                var Updated =await _employeeService.UpdateEmpAsync(UpdatedEmp) > 0;
 
                 if (Updated)
                     return RedirectToAction(nameof(Index));
@@ -197,12 +197,12 @@ namespace LinkDev.CompanyBase.PL.Controllers
        #region Delete
 
         [HttpGet]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id is null)
                 return BadRequest();
 
-            var employee = _employeeService.GetEmpById(id.Value);
+            var employee = await _employeeService.GetEmpByIdAsync(id.Value);
 
             if (employee is null)
                 return NotFound();
@@ -212,13 +212,13 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var message = string.Empty;
 
             try
             {
-                var deleted = _employeeService.DeleteEmp(id);
+                var deleted = await _employeeService.DeleteEmpAsync(id);
 
                 if (deleted)
                     return RedirectToAction(nameof(Index));

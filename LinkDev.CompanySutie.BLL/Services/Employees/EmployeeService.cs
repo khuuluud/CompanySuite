@@ -19,9 +19,9 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             _attachmentService = attachmentService;
         }
 
-        public IEnumerable<EmployeeDTO> GetEmployees(string search)
+        public async Task<IEnumerable<EmployeeDTO>> GetEmployeesAsync(string search)
         {
-            return _unitOfWork.EmployeeRepository
+            return await _unitOfWork.EmployeeRepository
                 .GetAllAsIQueryable()
                 .Where(E => !E.IsDeleted && (string.IsNullOrEmpty(search) || E.Name.ToLower().Contains(search.ToLower())))
                 .Include(E => E.Department)
@@ -36,12 +36,12 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                 Gender = employee.Gender.ToString(),
                 EmployeeType = employee.EmployeeType.ToString(),
                 Department = employee.Department.Name
-            });
+            }).ToListAsync();
         }
 
-        public EmployeeDetailsDto GetEmpById(int id)
+        public async Task<EmployeeDetailsDto> GetEmpByIdAsync(int id)
         {
-            var employee = _unitOfWork.EmployeeRepository.GetById(id);
+            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
             if (employee is { })
                 return new EmployeeDetailsDto()
                 {
@@ -62,7 +62,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             return null;
         }
 
-        public int CreateEmployee(CreatedEmployeeDto employeeDto)
+        public async Task<int> CreateEmployeeAsync(CreatedEmployeeDto employeeDto)
         {
         
             var employee = new Employee()
@@ -85,15 +85,15 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             };
 
             if(employeeDto.Img is not null)
-          employee.Img =  _attachmentService.Upload(employeeDto.Img, "images");
+          employee.Img = await _attachmentService.UploadAsync(employeeDto.Img, "images");
 
 
             _unitOfWork.EmployeeRepository.Add(employee);
 
-            return _unitOfWork.Complete();
+            return await _unitOfWork.CompleteAsync();
         }
 
-        public int UpdateEmp(UpdatedEmployeeDto employeeDto)
+        public async Task<int> UpdateEmpAsync(UpdatedEmployeeDto employeeDto)
         {
             var employee = new Employee()
             {
@@ -115,16 +115,16 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             };
 
            _unitOfWork.EmployeeRepository.Update(employee);
-            return _unitOfWork.Complete();
+            return await _unitOfWork.CompleteAsync();
         }
 
-        public bool DeleteEmp(int id)
+        public async Task<bool> DeleteEmpAsync(int id)
         {
             var emprepo = _unitOfWork.EmployeeRepository;
-            var employee = emprepo.GetById(id);
+            var employee = await emprepo.GetByIdAsync(id);
             if (employee is { })
                 emprepo.Delete(employee);
-            return _unitOfWork.Complete() > 0;
+            return await _unitOfWork.CompleteAsync() > 0;
         }
 
        

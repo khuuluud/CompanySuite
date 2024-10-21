@@ -10,14 +10,14 @@ namespace LinkDev.CompanyBase.BLL.Services.Departments
 {
     public interface IDepartmentService
     {
-        IEnumerable<DepartmentDTO> GetAllDepartments();
+        Task<IEnumerable<DepartmentDTO>> GetAllDepartmentsAsync();
 
-        DepartmentDetailsDto GetDepById(int id);
+        Task<DepartmentDetailsDto> GetDepByIdAsync(int id);
 
-        int CreateDepartment(CreatedDepartmentDto department);
+        Task<int> CreateDepartmentAsync(CreatedDepartmentDto department);
 
-        int UpdateDepartment(UpdatedDepartmentDto department);
+        Task<int> UpdateDepartmentAsync(UpdatedDepartmentDto department);
 
-        bool DeleteDepartment(int id);
+        Task<bool> DeleteDepartmentAsync(int id);
     }
 }

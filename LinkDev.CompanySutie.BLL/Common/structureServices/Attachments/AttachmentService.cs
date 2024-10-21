@@ -23,7 +23,7 @@ namespace LinkDev.CompanyBase.BLL.Common.structureServices.Attachments
             return false;
         }
 
-        public string? Upload(IFormFile file, string folderName)
+        public async Task<string?> UploadAsync(IFormFile file, string folderName)
         {
             var extension = Path.GetExtension(file.FileName);
             if (!_allowedExtensions.Contains(extension))
@@ -45,7 +45,7 @@ namespace LinkDev.CompanyBase.BLL.Common.structureServices.Attachments
             //streaming => data per time
           using  var fileStream = new FileStream(filePath, FileMode.Create);
           
-            file.CopyTo(fileStream);
+           await file.CopyToAsync(fileStream);
             return fileName;
 
             }
