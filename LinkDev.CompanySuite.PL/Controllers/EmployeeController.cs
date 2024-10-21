@@ -42,8 +42,6 @@ namespace LinkDev.CompanyBase.PL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-          
-
             return View();
         }
         [HttpPost]

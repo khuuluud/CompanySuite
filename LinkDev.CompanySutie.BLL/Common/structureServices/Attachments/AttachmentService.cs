@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,7 @@ namespace LinkDev.CompanyBase.BLL.Common.structureServices.Attachments
             if (file.Length > _allowedMaxSize)
                 return null;
 
+            
             //var folderPath = $"{Directory.GetCurrentDirectory()}\\wwwroot\\files\\{folderName}";
 
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\files", folderName);

@@ -56,7 +56,8 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
                     HiringDate = employee.HiringDate,
                     Gender = employee.Gender,
                     EmployeeType = employee.EmployeeType,
-                    Department = employee.Department.Name
+                    Department = employee.Department.Name,
+                    Img = employee.Img,
                 };
             return null;
         }
@@ -84,7 +85,7 @@ namespace LinkDev.CompanyBase.BLL.Services.Employees
             };
 
             if(employeeDto.Img is not null)
-          employee.Img =  _attachmentService.Upload(employeeDto.Img, "Images");
+          employee.Img =  _attachmentService.Upload(employeeDto.Img, "images");
 
 
             _unitOfWork.EmployeeRepository.Add(employee);
