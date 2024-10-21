@@ -67,7 +67,7 @@ namespace LinkDev.CompanyBase.PL.Controllers
                     EmployeeType = employeeVM.EmployeeType,
                     IsActive = employeeVM.IsActive,
                     DepartmentId= employeeVM.DepartmentId,
-
+                    Img = employeeVM.Img
 
 
                 };
