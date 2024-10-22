@@ -1,5 +1,7 @@
 ﻿using LinkDev.CompanyBase.DAL.Models .Departments;
 using LinkDev.CompanyBase.DAL.Models .Employees;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanyBase.DAL.Persistance.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
@@ -19,6 +21,8 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         }
@@ -26,6 +30,11 @@ namespace LinkDev.CompanyBase.DAL.Persistance.Data
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
+
+
+
+      
+
 
     }
 }
