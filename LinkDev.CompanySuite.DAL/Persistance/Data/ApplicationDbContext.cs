@@ -1,5 +1,6 @@
 ﻿using LinkDev.CompanyBase.DAL.Models .Departments;
 using LinkDev.CompanyBase.DAL.Models .Employees;
+using LinkDev.CompanyBase.DAL.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace LinkDev.CompanyBase.DAL.Persistance.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {

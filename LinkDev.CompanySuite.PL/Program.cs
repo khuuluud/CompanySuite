@@ -10,6 +10,8 @@ using AutoMapper;
 using LinkDev.CompanyBase.PL.Mapping;
 using LinkDev.CompanyBase.DAL.Persistance.unitOfWork;
 using LinkDev.CompanyBase.BLL.Common.structureServices.Attachments;
+using Microsoft.AspNetCore.Identity;
+using LinkDev.CompanyBase.DAL.Models.Identity;
 
 namespace LinkDev.CompanyBase.PL
 {
@@ -42,6 +44,23 @@ namespace LinkDev.CompanyBase.PL
            
             builder.Services.AddScoped<IEmployeeService,  EmployeeService>();
             builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
+            
+          
+            builder.Services.AddIdentity<ApplicationUser , IdentityRole>((Options) =>
+            {
+                Options.Password.RequiredLength = 5;
+                Options.Password.RequireNonAlphanumeric = true; //#$%
+                Options.Password.RequireLowercase = true;
+                Options.Password.RequireUppercase = true;
+                Options.Password.RequireDigit = true;
+                Options.Password.RequiredUniqueChars = 1;
+
+                Options.User.RequireUniqueEmail = true;
+               
+                Options.Lockout.AllowedForNewUsers = true;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
             #endregion
 
             var app = builder.Build();
