@@ -12,7 +12,7 @@ namespace LinkDev.CompanyBase.PL.ViewModels.Identity
 		public string LastName { get; set; } = null!;
 
         public string UserName { get; set; } = null!;
-
+		[EmailAddress]
         public string Email { get; set; } = null!;
 		
 		[DataType(DataType.Password)]

@@ -64,14 +64,39 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         #endregion
 
-
         #region Sign in
+        [HttpGet]
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
 
-        //public IActionResult SignIn()
-        //{
+            var user = await _userManager.FindByEmailAsync(model.Email);
 
-        //}
+            if(user is { })
+            {
+                var flag = await _userManager.CheckPasswordAsync(user, model.Password);
+                if (flag)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
+                    if (result.IsNotAllowed)
+                        ModelState.AddModelError(string.Empty, "Your account is not confirmed yet!");
 
+                    if (result.IsLockedOut)
+                        ModelState.AddModelError(string.Empty, "Your account has been locked!");
+
+
+                    if (result.Succeeded)
+                        return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+            }
+            return View(model);
+        }
 
         #endregion
 
