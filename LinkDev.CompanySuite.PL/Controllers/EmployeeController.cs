@@ -3,10 +3,12 @@ using LinkDev.CompanyBase.BLL.Moduls.DTO.Employees;
 using LinkDev.CompanyBase.BLL.Services.Departments;
 using LinkDev.CompanyBase.BLL.Services.Employees;
 using LinkDev.CompanyBase.PL.ViewModels.Employees;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkDev.CompanyBase.PL.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
 

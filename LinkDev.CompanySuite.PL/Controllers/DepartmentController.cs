@@ -9,6 +9,7 @@ using AutoMapper;
 
 namespace LinkDev.CompanyBase.PL.Controllers
 {
+    [Authorize]
     public class DepartmentController : Controller
     {
 
