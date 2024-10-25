@@ -60,7 +60,28 @@ namespace LinkDev.CompanyBase.PL
                 Options.Lockout.AllowedForNewUsers = true;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/SignIn";
+                options.AccessDeniedPath = "/Home/Error";
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
+                options.LogoutPath = "/Account/SignIn";
+            });
+
+            #region Authentication OverLoads
+
+            //builder.Services.AddAuthentication();
+            //builder.Services.AddAuthentication("Identity.Application");
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "Identity.Application";
+            });
+
+
+            #endregion
+
+
             #endregion
 
             var app = builder.Build();
@@ -80,6 +101,7 @@ namespace LinkDev.CompanyBase.PL
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
