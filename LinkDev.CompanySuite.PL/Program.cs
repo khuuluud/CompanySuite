@@ -66,7 +66,9 @@ namespace LinkDev.CompanyBase.PL
                 options.LoginPath = "/Account/SignIn";
                 options.AccessDeniedPath = "/Home/Error";
                 options.ExpireTimeSpan = TimeSpan.FromDays(1);
-                options.LogoutPath = "/Account/SignIn";
+                //options.LogoutPath = "/Account/SignIn";
+                //options.ForwardSignOut = "/Account/SignIn";
+               
             });
 
             #region Authentication OverLoads

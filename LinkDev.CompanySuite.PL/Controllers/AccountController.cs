@@ -100,7 +100,17 @@ namespace LinkDev.CompanyBase.PL.Controllers
 
         #endregion
 
+        #region Sign out
 
+        public async new Task<IActionResult> SignOut()
+        {
+           await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(SignIn));
+            
+        }
+
+
+        #endregion
 
     }
 }
